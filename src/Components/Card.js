@@ -1,13 +1,28 @@
 import React from 'react'
-import Input from './Input'
 import { makeStyles } from '@material-ui/core/styles';
-//import emailIcon from '../images/email.png'
+import Input from './Input'
+import Button from './Button'
 import emailIcon from '../images/email-24px.svg'
 import passwordIcon from '../images/password.png'
+import logo from '../images/devchallenges.svg'
 
 const useStyles = makeStyles(() => ({
+  card: {
+    border: '2px solid #BDBDBD',
+    borderRadius: '8px',
+    padding: '24px',
+    margin: '24px',
+  },
+  header: {
+    textAlign: 'left',
+    '& h3': {
+      fontSize: '16px',
+    },
+    '& p': {
+      fontSize: '12px',
+    }
+  },
   inputs: {
-    margin: '16px',
     display: 'grid',
   },
   icon: {
@@ -21,14 +36,24 @@ const Form = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.inputs}>
-      <Input placeholder="email">
-        <img className={classes.icon} src={emailIcon} alt="email" />
-      </Input>
-      <Input placeholder="password">
-        <img className={classes.icon} src={passwordIcon} alt="email"/>
-      </Input>
-    </div>
+    <React.Fragment>
+      <div className={classes.card}>
+        <img src={logo} alt="logo" />
+        <div className={classes.header}>
+          <h3>Join thousands of learners around the world</h3>
+          <p>Master real-life web development projects</p>
+        </div>
+        <div className={classes.inputs}>
+          <Input placeholder="email">
+            <img className={classes.icon} src={emailIcon} alt="email" />
+          </Input>
+          <Input placeholder="password">
+            <img className={classes.icon} src={passwordIcon} alt="email"/>
+          </Input>
+          <Button text="Start Coding Now"/>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 

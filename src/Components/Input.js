@@ -3,26 +3,17 @@ import MuiInput from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles';
 
-/* const styles = {
+const useStyles = makeStyles(() => ({
   input: {
-    margin: '8px',
-    padding: '4px',
-    border: '1px solid #BDBDBD',
-    boxSizing: 'border-box',
-    borderRadius: '8px',
-    width: '250px',
-  }
-} */
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  input: {
-    margin: '8px',
+    margin: '8px 0',
     paddingLeft: '4px',
     border: '1px solid #BDBDBD',
     boxSizing: 'border-box',
     borderRadius: '8px',
-    width: '250px'
+    "&::placeholder": {
+      color: "gray",
+      fontSize: '8px'
+    },
   },
 }));
 
@@ -33,7 +24,7 @@ const Input = (props) => {
   return (
     <MuiInput
       className={classes.input}
-      id="input-with-icon-adornment"
+      //id="input-with-icon-adornment"
       disableUnderline={true}
       placeholder={placeholder}
       startAdornment={
