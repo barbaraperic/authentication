@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Input from './Input'
 import Button from './Button'
+import SocialLinks from './SocialLinks'
 import emailIcon from '../images/email-24px.svg'
 import passwordIcon from '../images/password.png'
 import logo from '../images/devchallenges.svg'
@@ -22,8 +23,12 @@ const useStyles = makeStyles(() => ({
       fontSize: '12px',
     }
   },
-  inputs: {
+  formInputs: {
     display: 'grid',
+    '& p': {
+      fontSize: '10px',
+      color: '#BDBDBD'
+    }
   },
   icon: {
     width: '16px',
@@ -43,7 +48,7 @@ const Form = () => {
           <h3>Join thousands of learners around the world</h3>
           <p>Master real-life web development projects</p>
         </div>
-        <div className={classes.inputs}>
+        <div className={classes.formInputs}>
           <Input placeholder="email">
             <img className={classes.icon} src={emailIcon} alt="email" />
           </Input>
@@ -51,6 +56,8 @@ const Form = () => {
             <img className={classes.icon} src={passwordIcon} alt="email"/>
           </Input>
           <Button text="Start Coding Now"/>
+          <p>or continue with these social profile</p>
+          <SocialLinks />
         </div>
       </div>
     </React.Fragment>
