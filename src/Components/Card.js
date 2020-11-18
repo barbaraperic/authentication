@@ -33,6 +33,10 @@ const useStyles = makeStyles(() => ({
   icon: {
     width: '16px',
     filter: 'opacity(0.2) drop-shadow(0 0 0 black)',
+  },
+  login: {
+    color: '#2F80ED',
+    cursor: 'pointer'
   }
 }));
 
@@ -58,6 +62,7 @@ const Form = () => {
           <Button text="Start Coding Now"/>
           <p>or continue with these social profile</p>
           <SocialLinks />
+          <p>Already a member? <span className={classes.login}>Login</span></p>
         </div>
       </div>
     </React.Fragment>
