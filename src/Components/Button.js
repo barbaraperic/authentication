@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 
 
 const Button = (props) => {
-  const { text } = props
+  const { text, onClick } = props
 
   const classes = useStyles()
   
@@ -24,6 +24,7 @@ const Button = (props) => {
       className={classes.button}
       variant="contained"
       color="primary"
+      onClick={onClick}
     >
       {text}
     </MuiButton>

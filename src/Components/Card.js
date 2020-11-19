@@ -40,6 +40,13 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+const handleClick = (e) => {
+  console.log(e)
+  fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => console.log(res));
+}
+
 
 const Form = () => {
   const classes = useStyles();
@@ -59,7 +66,7 @@ const Form = () => {
           <Input placeholder="password">
             <img className={classes.icon} src={passwordIcon} alt="email"/>
           </Input>
-          <Button text="Start Coding Now"/>
+          <Button text="Start Coding Now" onClick={handleClick}/>
           <p>or continue with these social profile</p>
           <SocialLinks />
           <p>Already a member? <span className={classes.login}>Login</span></p>
