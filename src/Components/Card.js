@@ -1,5 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+
 import Input from './Input'
 import Button from './Button'
 import SocialLinks from './SocialLinks'
@@ -41,12 +43,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const handleClick = (e) => {
-  console.log(e)
-  fetch("http://localhost:9000/testAPI")
-      .then(res => res.text())
-      .then(res => console.log(res));
+  axios.get('/')
+      .then(res => console.log(res))
 }
-
 
 const Form = () => {
   const classes = useStyles();
