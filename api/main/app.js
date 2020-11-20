@@ -1,8 +1,13 @@
-var createError = require('http-errors');
+//var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const config = require('../config')
+const signup = require('../utils/auth')
+const connect = require('../utils/db')
+
+var userRouter = require('../resources/user/user.router')
 
 var app = express();
 
@@ -12,18 +17,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.send({ message: 'hello'})
-})
 
-app.get('/hello', (req, res) => {
-  console.log('res',res)
-  res.send({ message: 'hello'})
-})
+//mount router
+app.post('/api/signup', signup)
+app.use('/api/user', userRouter)
 
-app.post('/', (req, res) => {
-  console.log(req.body)
-  res.send({ message: 'ok'})
-})
+/*  connect('mongodb://localhost:27017/intro-to-mongodb')
+  .then(() => app.listen(9000, () => {
+    console.log('server on http://localhost:4000')
+  }))
+  .catch(e => console.error(e)) */
 
-module.exports = app;
+const start = async () => {
+  try {
+    await connect()
+    app.listen(config.port, () => {
+      console.log(`REST API on http://localhost:${config.port}/api`)
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+
+module.exports = start;
