@@ -1,3 +1,5 @@
+//const url = require('../.env.js');
+
 const config = {
   secrets: {
     jwt: 'learneverything'

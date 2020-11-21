@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const config = require('../config')
-const signup = require('../utils/auth')
+//const config = require('../config')
+//const signup = require('../utils/auth')
 const connect = require('../utils/db')
+const User = require('../resources/user/user.model')
 
-var userRouter = require('../resources/user/user.router')
+//var userRouter = require('../resources/user/user.router')
 
 var app = express();
 
@@ -17,27 +18,42 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //mount router
-app.post('/api/signup', signup)
-app.use('/api/user', userRouter)
+// app.post('/api/signup', signup)
+// app.use('/api/user', userRouter)
 
-/*  connect('mongodb://localhost:27017/intro-to-mongodb')
-  .then(() => app.listen(9000, () => {
+app.get('/', (req, res) => {
+  res.send({ message: 'hello'})
+})
+
+/* app.get('/user/:id', async (req, res) => {
+  res.send('hello')
+}) */
+
+app.get('/users', async (req, res) => {
+  try {
+    res.status(200).json(await User.find({}).lean().exec())
+  } catch(e) {
+    console.error('ERROR',e)
+    res.status(500).send()
+  }
+})
+
+app.post('/user', async (req, res) => {
+  console.log('>>>>',req.body)
+  const { email, password } = req.body
+  try {
+    const user = await User.create({ email, password })
+    console.log('USERRRR',user)
+    res.status(200).json(user.JSON())
+  } catch(e) {
+    console.error('error ',e)
+    res.status(500).send()
+  }
+})
+
+connect('mongodb://localhost:27017/authentication')
+  .then(() => app.listen(4000, () => {
     console.log('server on http://localhost:4000')
   }))
-  .catch(e => console.error(e)) */
-
-const start = async () => {
-  try {
-    await connect()
-    app.listen(config.port, () => {
-      console.log(`REST API on http://localhost:${config.port}/api`)
-    })
-  } catch (e) {
-    console.error(e)
-  }
-}
-
-
-module.exports = start;
+  .catch(e => console.error(e))
