@@ -1,7 +1,26 @@
 import React from 'react'
 import MuiInput from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
+
+const Input = (props) => {
+  const { children, placeholder } = props 
+  
+  const classes = useStyles();
+
+  return (
+    <MuiInput
+      className={classes.input}
+      disableUnderline={true}
+      placeholder={placeholder}
+      startAdornment={
+        <InputAdornment position="start">
+          {children}
+        </InputAdornment>
+      }
+    />
+  )
+}
 
 const useStyles = makeStyles(() => ({
   input: {
@@ -16,24 +35,5 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-
-const Input = (props) => {
-  const { children, placeholder } = props 
-  const classes = useStyles();
-
-  return (
-    <MuiInput
-      className={classes.input}
-      //id="input-with-icon-adornment"
-      disableUnderline={true}
-      placeholder={placeholder}
-      startAdornment={
-        <InputAdornment position="start">
-          {children}
-        </InputAdornment>
-      }
-    />
-  )
-}
 
 export default Input

@@ -40,14 +40,11 @@ app.get('/users', async (req, res) => {
 })
 
 app.post('/user', async (req, res) => {
-  console.log('>>>>',req.body)
   const { email, password } = req.body
   try {
     const user = await User.create({ email, password })
-    console.log('USERRRR',user)
-    res.status(200).json(user.JSON())
+    res.status(200).json(user)
   } catch(e) {
-    console.error('error ',e)
     res.status(500).send()
   }
 })

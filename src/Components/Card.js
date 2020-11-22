@@ -1,15 +1,48 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-import Input from './Input'
-import Button from './Button'
-import SocialLinks from './SocialLinks'
-import emailIcon from '../images/email-24px.svg'
-import passwordIcon from '../images/password.png'
+import Form from './Form'
 import logo from '../images/devchallenges.svg'
+class Card extends React.Component {
+  constructor(props) {
+    super(props)
 
-const useStyles = makeStyles(() => ({
+    this.state = {
+      email: '',
+      password: ''
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const email = event.target[0].value
+    const password = event.target[1].value
+    this.setState({ email: email, password: password }, () => {
+      const user = { email, password }
+      axios.post("/user", user )
+      .then(res => console.log('RES', res))
+    })
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <div className={styles.card}>
+          <img src={logo} alt="logo" />
+          <div className={styles.header}>
+            <h3>Join thousands of learners around the world</h3>
+            <p>Master real-life web development projects</p>
+          </div>
+          <Form handleSubmit={this.handleSubmit}/>
+        </div>
+      </React.Fragment>
+    )
+  }
+}
+
+const styles = {
   card: {
     border: '2px solid #BDBDBD',
     borderRadius: '8px',
@@ -24,55 +57,7 @@ const useStyles = makeStyles(() => ({
     '& p': {
       fontSize: '12px',
     }
-  },
-  formInputs: {
-    display: 'grid',
-    '& p': {
-      fontSize: '10px',
-      color: '#BDBDBD'
-    }
-  },
-  icon: {
-    width: '16px',
-    filter: 'opacity(0.2) drop-shadow(0 0 0 black)',
-  },
-  login: {
-    color: '#2F80ED',
-    cursor: 'pointer'
   }
-}));
-
-const handleClick = (e) => {
-  axios.get('/')
-      .then(res => console.log(res))
 }
 
-const Form = () => {
-  const classes = useStyles();
-
-  return (
-    <React.Fragment>
-      <div className={classes.card}>
-        <img src={logo} alt="logo" />
-        <div className={classes.header}>
-          <h3>Join thousands of learners around the world</h3>
-          <p>Master real-life web development projects</p>
-        </div>
-        <div className={classes.formInputs}>
-          <Input placeholder="email">
-            <img className={classes.icon} src={emailIcon} alt="email" />
-          </Input>
-          <Input placeholder="password">
-            <img className={classes.icon} src={passwordIcon} alt="email"/>
-          </Input>
-          <Button text="Start Coding Now" onClick={handleClick}/>
-          <p>or continue with these social profile</p>
-          <SocialLinks />
-          <p>Already a member? <span className={classes.login}>Login</span></p>
-        </div>
-      </div>
-    </React.Fragment>
-  )
-}
-
-export default Form
+export default Card
