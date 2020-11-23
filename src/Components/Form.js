@@ -8,7 +8,7 @@ import emailIcon from '../images/email-24px.svg'
 import passwordIcon from '../images/password.png'
 
 const Form = (props) => {
-  const { handleSubmit } = props
+  const { handleSubmit, buttonText, linkText } = props
 
   const classes = useStyles();
 
@@ -23,11 +23,11 @@ const Form = (props) => {
       <Input placeholder="password">
         <img className={classes.icon} src={passwordIcon} alt="email"/>
       </Input>
-      <Button text="Start Coding Now" type="submit" />
+      <Button text={buttonText} type="submit" />
         <p>or continue with these social profile</p>
       <SocialLinks />
-      <p>Already a member? 
-        <span className={classes.login}>Login</span>
+      <p>Already a member?
+        <span className={classes.login}> {linkText}</span>
       </p>
     </form>
   )

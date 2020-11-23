@@ -1,6 +1,6 @@
 import './App.css';
-import Card from './Components/Card'
-//import Input from './Components/Input'
+import LoginCard from './Components/LoginCard'
+// // import RegisterCard from './Components/RegisterCard'
 
 const styles = {
   container: {
@@ -14,7 +14,8 @@ const styles = {
 function App() {
   return (
     <div style={styles.container}>
-      <Card />
+      {/* <RegisterCard /> */}
+      <LoginCard />
     </div>
   );
 }
