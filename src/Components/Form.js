@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 import Input from './Input'
-import Button from './Button'
+import { PrimaryButton } from './Button'
 import SocialLinks from './SocialLinks'
 import emailIcon from '../images/email-24px.svg'
 import passwordIcon from '../images/password.png'
@@ -23,7 +23,7 @@ const Form = (props) => {
       <Input placeholder="password">
         <img className={classes.icon} src={passwordIcon} alt="email"/>
       </Input>
-      <Button text={buttonText} type="submit" />
+      <PrimaryButton text={buttonText} type="submit" />
         <p>or continue with these social profile</p>
       <SocialLinks />
       <p>Already a member?

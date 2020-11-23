@@ -7,11 +7,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import Button from './Button'
+import { TransparentButton } from './Button'
 
 const useStyles = makeStyles({
-  table: {
-    minWidth: 250,
+  root: {
+    borderTopWidth: 1,
+    borderColor: 'rgba(224, 224, 224, 1)',
+    borderStyle: 'solid',
+    borderRadius: '16px',
   },
 });
 
@@ -34,7 +37,7 @@ const BasicTable = () => {
   return (
     <TableContainer style={{ width: '100%' }}>
       <Table 
-        className={classes.table} 
+        className={classes.root} 
         aria-label="simple table"
         style={{ width: 600, margin: 'auto' }}
       >
@@ -43,7 +46,7 @@ const BasicTable = () => {
             <TableCell>Profile</TableCell>
             <TableCell align="center"></TableCell>
             <TableCell align="right">
-              <Button text="Edit"/>
+              <TransparentButton text="Edit"/>
             </TableCell>
           </TableRow>
         </TableHead>
