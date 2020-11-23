@@ -1,6 +1,7 @@
 import './App.css';
-import LoginCard from './Components/LoginCard'
-// // import RegisterCard from './Components/RegisterCard'
+// import LoginCard from './Components/LoginCard'
+// import RegisterCard from './Components/RegisterCard'
+import NavigationBar from './Components/NavigationBar'
 
 const styles = {
   container: {
@@ -15,7 +16,8 @@ function App() {
   return (
     <div style={styles.container}>
       {/* <RegisterCard /> */}
-      <LoginCard />
+      {/* <LoginCard /> */}
+      <NavigationBar />
     </div>
   );
 }

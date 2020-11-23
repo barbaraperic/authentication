@@ -3,7 +3,6 @@ import axios from 'axios';
 import Card from './Card'
 import Form from './Form'
 import CardHeader from './CardHeader'
-
 class RegisterCard extends React.Component {
   constructor(props) {
     super(props)
@@ -38,15 +37,6 @@ class RegisterCard extends React.Component {
         />
       </Card>
     )
-  }
-}
-
-const styles = {
-  card: {
-    border: '2px solid #BDBDBD',
-    borderRadius: '8px',
-    padding: '24px',
-    margin: '24px',
   }
 }
 
