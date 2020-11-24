@@ -4,7 +4,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles'
 
 const Input = (props) => {
-  const { children, placeholder } = props 
+  const { children, placeholder, label } = props 
   
   const classes = useStyles();
 
@@ -12,6 +12,7 @@ const Input = (props) => {
     <MuiInput
       className={classes.input}
       disableUnderline={true}
+      label={label}
       placeholder={placeholder}
       startAdornment={
         <InputAdornment position="start">

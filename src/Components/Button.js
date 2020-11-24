@@ -48,14 +48,15 @@ const useStyles = makeStyles(() => ({
     }
   },
   transparentButton: {
-    color: 'black',
+    color: '#828282',
     backgroundColor: 'white',
-    border: '2px solid whitesmoke',
+    border: '1px solid #828282',
     boxShadow: 'none',
-    borderRadius: '8px',
+    borderRadius: '12px',
     margin: '8px 0',
     '&:hover': {
-      backgroundColor: 'grey'
+      backgroundColor: '#E8E8E8',
+      boxShadow: 'none'
     }
   }
 }))

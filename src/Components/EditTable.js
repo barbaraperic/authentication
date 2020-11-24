@@ -1,54 +1,36 @@
-import React from 'react';
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import Table from './Table'
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
+import Table from './Table'
+import Input from './Input'
 
-import { TransparentButton } from './Button'
-
-function createData(field, data) {
-  return { field, data };
-}
-
-const rows = [
-  createData('PHOTO', 'photo'),
-  createData('NAME', 'name' ),
-  createData('BIO', 'bio'),
-  createData('PHONE', 'phone'),
-  createData('EMAIL', 'email'),
-  createData('PASSWORD', 'pass'),
-];
-
-const ProfileTable = () => {
-
+const EditTable = () => {
   const classes = useStyles();
 
   return (
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell className={classes.header}>Profile</TableCell>
+          <TableCell className={classes.header}>Change Info</TableCell>
           <TableCell align="center"></TableCell>
-          <TableCell align="right">
-            <TransparentButton />
-          </TableCell>
+          <TableCell align="right"></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
-          <TableRow key={row.name}>
+        <TableRow>
             <TableCell component="th" scope="row">
-              {row.field}
+              <Input placeholder="name" label="name"/>
             </TableCell>
-            <TableCell align="center">{row.data}</TableCell>
+            <TableCell align="center"></TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
-        ))}
+        
       </TableBody>
     </Table>
-  );
+  )
 }
 
 const useStyles = makeStyles({
@@ -62,4 +44,4 @@ const useStyles = makeStyles({
   }
 });
 
-export default ProfileTable
+export default EditTable
