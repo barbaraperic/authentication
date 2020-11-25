@@ -5,8 +5,8 @@ import MuiCard from '@material-ui/core/Card';
 import Input from './Input'
 import Button from './Button'
 import SocialLinks from './SocialLinks'
-import emailIcon from '../images/email-24px.svg'
-import passwordIcon from '../images/password.png'
+// import emailIcon from '../images/email-24px.svg'
+// import passwordIcon from '../images/password.png'
 import logo from '../images/devchallenges.svg'
 
 const InfoCard = () => {
@@ -23,9 +23,9 @@ const InfoCard = () => {
   const classes = useStyles()
 
   return (
-    <MuiCard classes={classes.card}>
+    <MuiCard className={classes.card}>
       <img src={logo} alt="logo" />
-      <div classes={classes.header}>
+      <div className={classes.header}>
         <h3>"Join thousands of learners around the world"</h3>
         <p>"Master web development by making real-life projects"</p>
       </div>
@@ -33,40 +33,20 @@ const InfoCard = () => {
         className={classes.formInputs}
         onSubmit={handleSubmit}
       >
-        <Input name="email">
-          <img className={classes.icon} src={emailIcon} alt="email" />
-        </Input>
-        <Input name="password">
-          <img className={classes.icon} src={passwordIcon} alt="email"/>
-        </Input>
+        <Input name="email" label="email"/>
+        <Input name="password" label="password"/>
         <Button type="submit">Submit</Button>
           <p>or continue with these social profile</p>
         <SocialLinks />
         <p>Already a member?
-          <span className={classes.login}>Login</span>
+          <span className={classes.login}> Login</span>
         </p>
       </form>
     </MuiCard>
   )
 }
 
-
 const useStyles = makeStyles(() => ({
-  formInputs: {
-    display: 'grid',
-    '& p': {
-      fontSize: '10px',
-      color: '#BDBDBD'
-    }
-  },
-  icon: {
-    width: '16px',
-    filter: 'opacity(0.2) drop-shadow(0 0 0 black)',
-  },
-  login: {
-    color: '#2F80ED',
-    cursor: 'pointer'
-  },
   card: {
     border: '2px solid #BDBDBD',
     borderRadius: '8px',
@@ -75,14 +55,29 @@ const useStyles = makeStyles(() => ({
     minWidth: '300px'
   },
   header: {
-    textAlign: 'left',
+    textAlign: 'center',
     '& h3': {
       fontSize: '16px',
     },
     '& p': {
       fontSize: '12px',
     }
-  }
+  },
+  formInputs: {
+    display: 'grid',
+    '& p': {
+      fontSize: '10px',
+      color: '#BDBDBD'
+    }
+  },
+/*   icon: {
+    width: '16px',
+    filter: 'opacity(0.2) drop-shadow(0 0 0 black)',
+  }, */
+  login: {
+    color: '#2F80ED',
+    cursor: 'pointer'
+  },
 }));
 
 export default InfoCard
