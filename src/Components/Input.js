@@ -1,25 +1,42 @@
 import React from 'react'
-import MuiInput from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles'
 
 const Input = (props) => {
-  const { children, placeholder, label } = props 
+  const { 
+    value, 
+    placeholder, 
+    label, 
+    children, 
+    handleChange } = props 
   
   const classes = useStyles();
 
   return (
-    <MuiInput
+/*   <TextField
+    className={classes.input}
+    disableUnderline={true}
+    label={label}
+    placeholder={placeholder}
+    startAdornment={
+      <InputAdornment position="start">
+        {children}
+      </InputAdornment>
+    }
+  /> */
+    <TextField
       className={classes.input}
-      disableUnderline={true}
+      id="outlined-name"
       label={label}
       placeholder={placeholder}
-      startAdornment={
-        <InputAdornment position="start">
-          {children}
-        </InputAdornment>
-      }
-    />
+      value={value}
+      onChange={handleChange}
+      variant="outlined"
+      InputProps={{
+      startAdornment: <InputAdornment position="start">{children}</InputAdornment>,
+      }}
+  />
   )
 }
 
@@ -27,8 +44,6 @@ const useStyles = makeStyles(() => ({
   input: {
     margin: '8px 0',
     paddingLeft: '4px',
-    border: '1px solid #BDBDBD',
-    boxSizing: 'border-box',
     borderRadius: '8px',
     "&::placeholder": {
       color: "gray",
