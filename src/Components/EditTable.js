@@ -6,30 +6,48 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import Table from './Table'
 import Input from './Input'
+import { PrimaryButton } from './Button'
+
+function createData(name, data) {
+  return { name, data };
+}
+
+const rows = [
+  createData('photo', 'photo'),
+  createData('name', 'name' ),
+  createData('bio', 'bio'),
+  createData('phone', 'phone'),
+  createData('email', 'email'),
+  createData('password', 'pass'),
+];
 
 const EditTable = () => {
   const classes = useStyles();
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell className={classes.header}>Change Info</TableCell>
-          <TableCell align="center"></TableCell>
-          <TableCell align="right"></TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-            <TableCell component="th" scope="row">
-              <Input placeholder="name" label="name"/>
-            </TableCell>
+    <React.Fragment>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.header}>Change Info</TableCell>
             <TableCell align="center"></TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
-        
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.name}>
+              <TableCell>
+                <Input label={row.name} placeholder={`Enter your ${row.name}`} />
+              </TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <PrimaryButton type="submit" text="Save" />
+    </React.Fragment>
   )
 }
 

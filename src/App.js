@@ -3,7 +3,7 @@ import './App.css';
 // import RegisterCard from './Components/RegisterCard'
 // import NavigationBar from './Components/NavigationBar'
 // import ProfileTable from './Components/ProfileTable'
-// import EditTable from './Components/EditTable'
+import EditTable from './Components/EditTable'
 
 
 
@@ -21,12 +21,12 @@ const styles = {
 function App() {
   return (
     <div style={styles.container}>
-      <RegisterCard />
+      {/* <RegisterCard /> */}
       {/* <LoginCard /> */}
       {/* <NavigationBar /> */}
       {/* <NavigationBar /> */}
       {/* <ProfileTable /> */}
-      {/* <EditTable /> */}
+      <EditTable />
     </div>
   );
 }
