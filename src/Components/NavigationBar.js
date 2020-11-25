@@ -59,6 +59,7 @@ const NavigationBar = () => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}><span className={classes.logout}>Logout</span></MenuItem>
               </Menu>
             </div>
         </Toolbar>
@@ -79,6 +80,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  logout: {
+    color: 'red',
+  }
 }));
 
 export default NavigationBar

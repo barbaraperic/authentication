@@ -7,13 +7,13 @@ import TableBody from '@material-ui/core/TableBody';
 import Table from './Table'
 import Input from './Input'
 import { PrimaryButton } from './Button'
+import arrowIcon from '../images/arrow_back.svg'
 
 function createData(name, data) {
   return { name, data };
 }
 
 const rows = [
-  createData('photo', 'photo'),
   createData('name', 'name' ),
   createData('bio', 'bio'),
   createData('phone', 'phone'),
@@ -26,6 +26,10 @@ const EditTable = () => {
 
   return (
     <React.Fragment>
+      <div className={classes.arrow}>
+        <img src={arrowIcon} alt="previous"/>
+        <h3>Back</h3>
+      </div>
       <Table>
         <TableHead>
           <TableRow>
@@ -35,6 +39,9 @@ const EditTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
+          <TableRow>
+            <TableCell>CHANGE PHOTO</TableCell>
+          </TableRow>
           {rows.map(row => (
             <TableRow key={row.name}>
               <TableCell>
@@ -52,6 +59,11 @@ const EditTable = () => {
 }
 
 const useStyles = makeStyles({
+  arrow: {
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center'
+  },
   header: {
     fontSize: '24px'
   },
