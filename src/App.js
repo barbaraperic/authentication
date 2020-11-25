@@ -3,9 +3,9 @@ import './App.css';
 // import RegisterCard from './Components/RegisterCard'
 // import NavigationBar from './Components/NavigationBar'
 // import ProfileTable from './Components/ProfileTable'
-import EditTable from './Components/EditTable'
-
-
+// import EditTable from './Components/EditTable'
+// import InputNew from './Components/Input_New'
+import InfoCard from './Components/InfoCard'
 
 const styles = {
   container: {
@@ -26,7 +26,7 @@ function App() {
       {/* <NavigationBar /> */}
       {/* <NavigationBar /> */}
       {/* <ProfileTable /> */}
-      <EditTable />
+      <InfoCard />
     </div>
   );
 }

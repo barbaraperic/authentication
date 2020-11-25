@@ -1,64 +1,69 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiButton from '@material-ui/core/Button';
 
-const PrimaryButton = (props) => {
-  const { text, onClick, type } = props
+const Button = (props) => {
+  const { 
+    variant,
+    size, 
+    onClick,
+    className,
+    disableRipple,
+    type,
+    children
+  } = props
 
   const classes = useStyles()
   
   return (
     <MuiButton
-      className={classes.primaryButton}
-      variant="contained"
-      color="primary"
+      variant={variant} //contained
+      size={size}
       onClick={onClick}
+      className={`${classes.primaryButton} ${className}`}
+      disableRipple={disableRipple}
       type={type}
     >
-      {text}
-    </MuiButton>
-  )
-}
-
-const TransparentButton = (props) => {
-  const { text, onClick, type } = props
-
-  const classes = useStyles()
-  
-  return (
-    <MuiButton
-      className={classes.transparentButton}
-      variant="contained"
-      color="primary"
-      onClick={onClick}
-      type={type}
-    >
-      {text}
+      {children}
     </MuiButton>
   )
 }
 
 const useStyles = makeStyles(() => ({
-  primaryButton: {
-    backgroundColor: '#2F80ED',
+  button: {
+    backgroundColor: '#6d6d6d',
     borderRadius: '8px',
     margin: '8px 0',
     '&:hover': {
       backgroundColor: '#2F77D6'
     }
   },
-  transparentButton: {
-    color: '#828282',
-    backgroundColor: 'white',
-    border: '1px solid #828282',
-    boxShadow: 'none',
-    borderRadius: '12px',
-    margin: '8px 0',
-    '&:hover': {
-      backgroundColor: '#E8E8E8',
-      boxShadow: 'none'
-    }
-  }
 }))
 
-export { PrimaryButton, TransparentButton }
+Button.defaultProps = {
+  variant: 'outlined',
+  className: '',
+  size: 'medium',
+  disableRipple: false,
+  disabled: false,
+  type: 'submit',
+  onClick: () => {}
+}
+
+Button.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  onClick: PropTypes.func,
+  variant: PropTypes.string,
+  className: PropTypes.string,
+  size: PropTypes.string,
+  disabled: PropTypes.bool,
+  disableRipple: PropTypes.bool,
+  type: PropTypes.string
+}
+
+
+export default Button

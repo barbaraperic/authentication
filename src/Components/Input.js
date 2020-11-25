@@ -1,42 +1,43 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles'
 
 const Input = (props) => {
-  const { 
-    value, 
+  const {
+    className,
+    value,
+    name,
+    variant,
     placeholder, 
     label, 
-    children, 
-    handleChange } = props 
+    helperText,
+    error,
+    onChange,
+    onBlur,
+    type,
+    multiline,
+    inputProps
+  } = props 
   
   const classes = useStyles();
 
   return (
-/*   <TextField
-    className={classes.input}
-    disableUnderline={true}
-    label={label}
-    placeholder={placeholder}
-    startAdornment={
-      <InputAdornment position="start">
-        {children}
-      </InputAdornment>
-    }
-  /> */
     <TextField
-      className={classes.input}
-      id="outlined-name"
-      label={label}
-      placeholder={placeholder}
+      className={`${classes.input} ${className}`}
       value={value}
-      onChange={handleChange}
-      variant="outlined"
-      InputProps={{
-      startAdornment: <InputAdornment position="start">{children}</InputAdornment>,
-      }}
-  />
+      name={name}
+      variant={variant}
+      placeholder={placeholder}
+      label={label}
+      helperText={helperText || ''}
+      error={error}
+      onChange={onChange}
+      onBlur={onBlur}
+      type={type}
+      multiline={multiline}
+      InputProps={inputProps}
+    />
   )
 }
 
@@ -51,5 +52,36 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
+
+Input.defaultProps = {
+  className: '',
+  value: '',
+  variant: 'outlined',
+  label: '',
+  helperText: '',
+  error: false,
+  onBlur: () => {},
+  type: 'text',
+  multiline: false,
+  placeholder: '',
+  inputProps: {}
+}
+
+Input.propTypes = {
+  className: PropTypes.string,
+  value: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string, 
+  helperText: PropTypes.string,
+  error: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  type: PropTypes.string,
+  multiple: PropTypes.bool,
+  placeholder: PropTypes.string,
+  inputProps: PropTypes.shape({
+    startAdornment: PropTypes.node,
+  }),
+}
 
 export default Input

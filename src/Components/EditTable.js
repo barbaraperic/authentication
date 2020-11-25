@@ -6,7 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import Table from './Table'
 import Input from './Input'
-import { PrimaryButton } from './Button'
+import Button from './Button'
 import arrowIcon from '../images/arrow_back.svg'
 
 function createData(name, data) {
@@ -53,7 +53,7 @@ const EditTable = () => {
           ))}
         </TableBody>
       </Table>
-      <PrimaryButton type="submit" text="Save" />
+      <Button>Save</Button>
     </React.Fragment>
   )
 }
