@@ -1,11 +1,11 @@
 import './App.css';
-// import LoginCard from './Components/LoginCard'
-// import RegisterCard from './Components/RegisterCard'
-// import NavigationBar from './Components/NavigationBar'
-// import ProfileTable from './Components/ProfileTable'
-// import EditTable from './Components/EditTable'
-// import InputNew from './Components/Input_New'
-import InfoCard from './Components/InfoCard'
+// import LoginCard from './components/LoginCard'
+// import RegisterCard from './components/RegisterCard'
+// import NavigationBar from './components/NavigationBar'
+// import ProfileTable from './components/ProfileTable'
+// import EditTable from './components/EditTable'
+// import InputNew from './components/Input_New'
+import InfoCard from './components/InfoCard'
 
 const styles = {
   container: {
