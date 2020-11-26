@@ -1,21 +1,24 @@
-import React from 'react'
+import React,  { useState } from 'react'
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
+import FormControl from '@material-ui/core/FormControl' 
 import Input from './Input'
 import Button from './Button'
 import SocialLinks from './SocialLinks'
-// import emailIcon from '../images/email-24px.svg'
-// import passwordIcon from '../images/password.png'
 import logo from '../images/devchallenges.svg'
 
 const InfoCard = () => {
 
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const email = event.target[0].value
-    const password = event.target[1].value
+    const password = event.target[2].value
     const user = { email, password }
+    console.log('>>',user)
     axios.post("/user", user )
       .then(res => console.log('RES', res.data))
   }
@@ -29,18 +32,29 @@ const InfoCard = () => {
         <h3>"Join thousands of learners around the world"</h3>
         <p>"Master web development by making real-life projects"</p>
       </div>
-      <form 
-        className={classes.formInputs}
-        onSubmit={handleSubmit}
-      >
-        <Input name="email" label="email"/>
-        <Input name="password" label="password"/>
-        <Button type="submit">Submit</Button>
-          <p>or continue with these social profile</p>
-        <SocialLinks />
-        <p>Already a member?
-          <span className={classes.login}> Login</span>
-        </p>
+      <form className={classes.formInputs} onSubmit={handleSubmit}>
+        <FormControl>
+          <Input 
+            type="email"
+            name="email" 
+            label="email" 
+            value={email} 
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            name="password" 
+            label="password" 
+            value={password} 
+            onChange={e => setPassword(e.target.value)}
+          />
+          <Button type="submit">Submit</Button>
+            <p>or continue with these social profile</p>
+          <SocialLinks />
+          <p>Already a member?
+            <span className={classes.login}> Login</span>
+          </p>
+        </FormControl>
       </form>
     </MuiCard>
   )
