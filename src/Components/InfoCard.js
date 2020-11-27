@@ -1,5 +1,7 @@
 import React,  { useState } from 'react'
-import axios from 'axios';
+//import axios from 'axios';
+import { connect } from 'react-redux'
+import { addUser } from '../actions/user'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
 import FormControl from '@material-ui/core/FormControl' 
@@ -8,12 +10,19 @@ import Button from './Button'
 import SocialLinks from './SocialLinks'
 import logo from '../images/devchallenges.svg'
 
-const InfoCard = () => {
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  }
+}
+
+const InfoCard = (props) => {
+  const { dispatch } = props
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
 
-  const handleSubmit = (event) => {
+/*   const handleSubmit = (event) => {
     event.preventDefault()
     const email = event.target[0].value
     const password = event.target[2].value
@@ -21,6 +30,14 @@ const InfoCard = () => {
     console.log('>>',user)
     axios.post("/user", user )
       .then(res => console.log('RES', res.data))
+  } */
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const email = event.target[0].value
+    const password = event.target[2].value
+    const user = { email, password }
+    dispatch(addUser(user))
   }
 
   const classes = useStyles()
@@ -94,4 +111,5 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default InfoCard
+export default connect(mapStateToProps)(InfoCard)
+

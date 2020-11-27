@@ -1,11 +1,21 @@
 import './App.css';
-// import LoginCard from './components/LoginCard'
-// import RegisterCard from './components/RegisterCard'
-// import NavigationBar from './components/NavigationBar'
-// import ProfileTable from './components/ProfileTable'
-// import EditTable from './components/EditTable'
-// import InputNew from './components/Input_New'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import reducer from './reducers/user'
+import ReduxThunk from 'redux-thunk'
 import InfoCard from './components/InfoCard'
+
+const store = createStore(reducer, applyMiddleware(ReduxThunk))
+
+function App() {
+  return (
+    <Provider store={store}>
+      <div style={styles.container}>
+        <InfoCard />
+      </div>
+    </Provider>
+  );
+}
 
 const styles = {
   container: {
@@ -16,19 +26,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   }
-}
-
-function App() {
-  return (
-    <div style={styles.container}>
-      {/* <RegisterCard /> */}
-      {/* <LoginCard /> */}
-      {/* <NavigationBar /> */}
-      {/* <NavigationBar /> */}
-      {/* <ProfileTable /> */}
-      <InfoCard />
-    </div>
-  );
 }
 
 export default App;
