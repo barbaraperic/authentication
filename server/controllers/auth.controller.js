@@ -1,9 +1,10 @@
-const User = require('../resources/user/user.model')
-// const Role = db.role;
-//var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require('../resources/user/user.model')
+const config = require("../config/auth.config");
 
-exports.signup = async (req, res) => {
+
+/* exports.signup = async (req, res) => {
   const userObj = User.create({ 
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password)
@@ -14,9 +15,10 @@ exports.signup = async (req, res) => {
   } catch(e) {
     res.status(500).send()
   }
-}
+} */
 
-/* exports.signup = (req, res) => {
+
+exports.signup = (req, res) => {
   const user = new User({
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8)
@@ -26,16 +28,48 @@ exports.signup = async (req, res) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
-    } res.send({ message: "User was registered successfully!" })
-  })
-} */
+    }
 
-/* app.post('/user', async (req, res) => {
-  const { email, password } = req.body
-  try {
-    const user = await User.create({ email, password })
-    res.status(200).json(user)
-  } catch(e) {
-    res.status(500).send()
-  }
-}) */
+    res.send({ message: "User was registered successfully!" });
+  });
+}
+
+
+exports.signin = (req, res) => {
+  User.findOne({
+    email: req.body.email
+  })
+    .exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!"
+        });
+      }
+
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400 // 24 hours
+      });
+
+      res.status(200).send({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        accessToken: token
+      });
+    });
+};

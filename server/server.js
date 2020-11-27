@@ -1,16 +1,11 @@
-//var createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require("body-parser");
-//const config = require('../config')
-//const signup = require('../utils/auth')
-const connect = require('../utils/db')
-const signup = require('../routes/auth.routes')
-//const User = require('../resources/user/user.model')
-
-//const userRouter = require('../resources/user/user.router')
+const connect = require('./utils/db')
+const signup = require('./routes/auth.routes')
+const dbConfig = require('./config/db.config')
 
 const app = express();
 
@@ -22,15 +17,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//mount router
-// app.post('/api/signup', signup)
-// app.use('/api/user', userRouter)
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
+
+app.get('/', (req, res) => {
+  res.send({ message: 'hello'})
+})
 
 app.use('/signup', signup)
 
-/* app.get('/', (req, res) => {
-  res.send({ message: 'hello'})
-}) */
+connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
+  .then(() => app.listen(4000, () => {
+    console.log('server on http://localhost:4000')
+  }))
+  .catch(e => console.error(e))
+
 
 /* app.get('/user/:id', async (req, res) => {
   res.send('hello')
@@ -55,8 +56,3 @@ app.use('/signup', signup)
   }
 }) */
 
-connect('mongodb://localhost:27017/authentication')
-  .then(() => app.listen(4000, () => {
-    console.log('server on http://localhost:4000')
-  }))
-  .catch(e => console.error(e))

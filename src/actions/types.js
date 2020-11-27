@@ -1,7 +1,8 @@
-export const ADD_USER = "ADD_USER"
-
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
+
+export const MESSAGE_SUCCESS = 'MESSAGE_SUCCESS'
+export const MESSAGE_FAIL = 'MESSAGE_FAIL'

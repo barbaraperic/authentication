@@ -2,14 +2,14 @@ import axios from 'axios';
 
 const API_URL = "http://localhost:3000/";
 
-const register = (email, password) => {
+export const register = (email, password) => {
   return axios.post(API_URL + "signup", {
     email,
     password,
   });
 };
 
-const login = (username, password) => {
+/* const login = (username, password) => {
   return axios
     .post(API_URL + "signin", {
       username,
@@ -28,4 +28,4 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
-export { register, login, logout };
+export { register, login, logout }; */

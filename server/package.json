@@ -4,7 +4,7 @@
   "description": "Node.js + MongoDB: JWT Authentication & Authorization",
   "private": true,
   "scripts": {
-    "start": "node ./main/app.js"
+    "start": "node ./server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
