@@ -4,16 +4,19 @@ import { createStore, applyMiddleware } from 'redux'
 import reducer from './reducers/user'
 import ReduxThunk from 'redux-thunk'
 import InfoCard from './components/InfoCard'
+import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(reducer, applyMiddleware(ReduxThunk))
 
 function App() {
   return (
-    <Provider store={store}>
-      <div style={styles.container}>
-        <InfoCard />
-      </div>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <div style={styles.container}>
+          <InfoCard />
+        </div>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
