@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require("body-parser");
 const connect = require('./utils/db')
-const signup = require('./routes/auth.routes')
 const dbConfig = require('./config/db.config')
 
 const app = express();
@@ -17,14 +16,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require('./routes/test.routes')(app)
+require('./routes/auth.routes')(app)
+require('./routes/user.routes')(app)
 
-app.get('/', (req, res) => {
-  res.send({ message: 'hello'})
-})
-
-app.use('/signup', signup)
 
 connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
   .then(() => app.listen(4000, () => {

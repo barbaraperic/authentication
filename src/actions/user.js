@@ -1,8 +1,8 @@
-import { ADD_USER } from './types'
+import { REGISTER_SUCCESS } from './types'
 
 export const addUser = (user) => {
   return {
-    type: ADD_USER,
+    type: REGISTER_SUCCESS,
     payload: user
   }
 }
