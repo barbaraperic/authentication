@@ -1,23 +1,5 @@
-import { REGISTER_SUCCESS } from '../actions/types'
-
-const initialState = {
-  user: {}
-}
-
-console.log('STATE', initialState)
-
-const reducer = (state = initialState, action) => {
-  const { type, payload } = action
-  
-  switch(type) {
-    case REGISTER_SUCCESS:
-      return { user: payload }
-    default: return state
-  }
-}
-
-
-/* import {
+import {
+  REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -30,44 +12,41 @@ const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
 
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
 
   switch (type) {
     case REGISTER_SUCCESS:
       return {
         ...state,
-        isLoggedIn: false,
-      };
+        isLoggedIn: true
+      } 
     case REGISTER_FAIL:
       return {
         ...state,
-        isLoggedIn: false,
-      };
+        isLoggedIn: false
+      }
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggedIn: true,
-        user: payload.user,
-      };
+        user: payload.user
+      }
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
-      };
+        user: null
+      }
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
-      };
+        user: null
+      }
     default:
-      return state;
+      return state
   }
-} */
-
-export default reducer
-
-
-
+}
