@@ -104,13 +104,15 @@ const useStyles = makeStyles(() => ({
     cursor: 'pointer'
   },
   success: {
-    color: 'green',
+    color: 'white',
     fontWeight: 500,
     textTransform: 'uppercase',
-    backgroundColor: '#0bff0b',
+    backgroundColor: '#379634',
     padding: '11px',
     width: '40%',
     margin: 'auto',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
   }
 }));
 
