@@ -20,6 +20,7 @@ const InfoCard = (props) => {
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
+  //const [ success, setSuccess ] = useState(false)
 
   console.log('STATE',state)
 
