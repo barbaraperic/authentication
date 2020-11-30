@@ -12,7 +12,7 @@ import AuthService from '../services/auth.service'
 export const register = (email, password) => (dispatch) => {
   return AuthService.register(email, password)
     .then((res) => {
-      console.log("res", res)
+      
       dispatch({
         type: REGISTER_SUCCESS
       })
@@ -22,7 +22,8 @@ export const register = (email, password) => (dispatch) => {
         payload: res.data.message
       })
 
-      return Promise.resolve()
+      return res
+      //return Promise.resolve()
     },
     (error) => {
       const message = 

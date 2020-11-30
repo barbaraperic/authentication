@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://localhost:8080/";
+const API_URL = "http://localhost:3000/";
 
 const register = (email, password) => {
   return axios.post(API_URL + "signup", {
@@ -28,8 +28,5 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
-export default {
- register,
-  login,
-  logout,
-};
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { register, login, logout };

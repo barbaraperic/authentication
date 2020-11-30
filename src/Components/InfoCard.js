@@ -1,5 +1,5 @@
 import React,  { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { register } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
@@ -9,63 +9,65 @@ import Button from './Button'
 import SocialLinks from './SocialLinks'
 import logo from '../images/devchallenges.svg'
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  }
-}
-
-const InfoCard = (props) => {
-  const { dispatch, state } = props
+const InfoCard = () => {
+  const dispatch = useDispatch()
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
+  const { message } = useSelector(state => state.message);
   //const [ success, setSuccess ] = useState(false)
 
-  console.log('STATE',state)
+  console.log('message', message)
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const email = event.target[0].value
     const password = event.target[2].value
-    console.log('details',email, password)
     dispatch(register(email, password))
+      .then(res => console.log('this', res))
   }
 
   const classes = useStyles()
 
   return (
-    <MuiCard className={classes.card}>
-      <img src={logo} alt="logo" />
-      <div className={classes.header}>
-        <h3>"Join thousands of learners around the world"</h3>
-        <p>"Master web development by making real-life projects"</p>
-      </div>
-      <form className={classes.formInputs} onSubmit={handleSubmit}>
-        <FormControl>
-          <Input 
-            type="email"
-            name="email" 
-            label="email" 
-            value={email} 
-            onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            type="password"
-            name="password" 
-            label="password" 
-            value={password} 
-            onChange={e => setPassword(e.target.value)}
-          />
-          <Button type="submit">Submit</Button>
-            <p>or continue with these social profile</p>
-          <SocialLinks />
-          <p>Already a member?
-            <span className={classes.login}> Login</span>
-          </p>
-        </FormControl>
-      </form>
-    </MuiCard>
+    <React.Fragment>
+      <MuiCard className={classes.card}>
+        <img src={logo} alt="logo" />
+        <div className={classes.header}>
+          <h3>Join thousands of learners around the world</h3>
+          <p>Master web development by making real-life projects</p>
+        </div>
+        <form className={classes.formInputs} onSubmit={handleSubmit}>
+          <FormControl>
+            <Input 
+              type="email"
+              name="email" 
+              label="email" 
+              value={email} 
+              onChange={e => setEmail(e.target.value)}
+            />
+            <Input
+              type="password"
+              name="password" 
+              label="password" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Button type="submit">Submit</Button>
+              <p>or continue with these social profile</p>
+            <SocialLinks />
+            <p>Already a member?
+              <span className={classes.login}> Login</span>
+            </p>
+          </FormControl>
+        </form>
+      </MuiCard>
+      {message && 
+        <div className={classes.success}>
+          {message}
+        </div>
+      }
+    </React.Fragment>
   )
 }
 
@@ -101,7 +103,16 @@ const useStyles = makeStyles(() => ({
     color: '#2F80ED',
     cursor: 'pointer'
   },
+  success: {
+    color: 'green',
+    fontWeight: 500,
+    textTransform: 'uppercase',
+    backgroundColor: '#0bff0b',
+    padding: '11px',
+    width: '40%',
+    margin: 'auto',
+  }
 }));
 
-export default connect(mapStateToProps)(InfoCard)
+export default InfoCard
 
