@@ -1,14 +1,22 @@
 import './App.css';
-import InfoCard from './components/InfoCard'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import RegisterCard from './components/RegisterCard'
+import LoginCard from './components/LoginCard'
 
 function App() {
   return (
-    <BrowserRouter>
-        <div style={styles.container}>
-          <InfoCard />
-        </div>
-    </BrowserRouter>
+    <Router>
+      <div style={styles.container}>
+        <Switch>
+          <Route exact path="/">
+            <RegisterCard />
+          </Route>
+          <Route path="/login">
+            <LoginCard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
