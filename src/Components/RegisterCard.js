@@ -15,7 +15,7 @@ const RegisterCard = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const { message } = useSelector(state => state.message);
-  const [successful, setSuccessful] = useState(false)
+  const [ successful, setSuccessful ] = useState(false)
 
   console.log('message', message)
 

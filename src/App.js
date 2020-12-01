@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterCard from './components/RegisterCard'
 import LoginCard from './components/LoginCard'
 import ProfileTable from './components/ProfileTable'
+import NavigationBar from './components/NavigationBar'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <LoginCard />
           </Route>
           <Route path="/dashboard">
+            <NavigationBar />
             <ProfileTable />
           </Route>
         </Switch>
