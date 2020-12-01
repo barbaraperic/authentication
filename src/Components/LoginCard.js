@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import MuiCard from '@material-ui/core/Card';
+import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl' 
+import MuiCard from '@material-ui/core/Card';
+import FormControl from '@material-ui/core/FormControl'
 import Input from './Input'
 import Button from './Button'
 import SocialLinks from './SocialLinks'
@@ -12,12 +15,29 @@ const Login = () => {
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
+  const [ loggedIn, setLoggedIn ] = useState(false)
+  const dispatch = useDispatch()
+
+  //const isLoggedIn = useSelector((state) => state.auth)
 
   const classes = useStyles()
 
   const handleSubmit = (e) => {
-    console.log(e)
+    e.preventDefault()
+    
+    dispatch(login(email, password))
+    .then(() => {
+      setLoggedIn(true)
+    })
+    .catch(() => {
+      setLoggedIn(false)
+    })
   }
+
+  if (loggedIn) {
+    return <Redirect to="/profile" />;
+  }
+
 
   return (
     <MuiCard className={classes.card}>  

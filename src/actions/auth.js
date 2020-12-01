@@ -54,7 +54,7 @@ export const login = (email, password) => (dispatch) => {
         payload: {user:  data}
       })
 
-      return Promise.resolve()
+      return data
     },
     (error) => {
       const message = 

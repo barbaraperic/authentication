@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 
-import { TransparentButton } from './Button'
+import Button from './Button'
 
 function createData(field, data) {
   return { field, data };
@@ -25,6 +25,10 @@ const ProfileTable = () => {
 
   const classes = useStyles();
 
+  const handleClick = (e) => {
+    console.log(e)
+  }
+
   return (
     <Table>
       <TableHead>
@@ -32,7 +36,11 @@ const ProfileTable = () => {
           <TableCell className={classes.header}>Profile</TableCell>
           <TableCell align="center"></TableCell>
           <TableCell align="right">
-            <TransparentButton />
+            <Button
+              onClick={handleClick}
+            >
+              Edit
+            </Button>
           </TableCell>
         </TableRow>
       </TableHead>

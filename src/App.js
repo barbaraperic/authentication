@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterCard from './components/RegisterCard'
 import LoginCard from './components/LoginCard'
+import ProfileTable from './components/ProfileTable'
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           </Route>
           <Route path="/login">
             <LoginCard />
+          </Route>
+          <Route path="/dashboard">
+            <ProfileTable />
           </Route>
         </Switch>
       </div>
