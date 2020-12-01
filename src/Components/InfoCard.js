@@ -15,16 +15,23 @@ const InfoCard = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const { message } = useSelector(state => state.message);
-  //const [ success, setSuccess ] = useState(false)
+  const [successful, setSuccessful] = useState(false)
 
   console.log('message', message)
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    setSuccessful(false)
+
     const email = event.target[0].value
     const password = event.target[2].value
     dispatch(register(email, password))
-      .then(res => console.log('this', res))
+      .then(() => {
+        setSuccessful(true)  
+      })
+      .catch (() => {
+        setSuccessful(false)
+      })
   }
 
   const classes = useStyles()
@@ -63,7 +70,7 @@ const InfoCard = () => {
         </form>
       </MuiCard>
       {message && 
-        <div className={classes.success}>
+        <div className={ successful ? classes.success : classes.alert}>
           {message}
         </div>
       }
@@ -108,6 +115,17 @@ const useStyles = makeStyles(() => ({
     fontWeight: 500,
     textTransform: 'uppercase',
     backgroundColor: '#379634',
+    padding: '11px',
+    width: '40%',
+    margin: 'auto',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'
+  },
+  alert: {
+    color: 'white',
+    fontWeight: 500,
+    textTransform: 'uppercase',
+    backgroundColor: 'red',
     padding: '11px',
     width: '40%',
     margin: 'auto',
