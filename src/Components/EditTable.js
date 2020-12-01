@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,20 +9,31 @@ import Input from './Input'
 import Button from './Button'
 import arrowIcon from '../images/arrow_back.svg'
 
-function createData(name, data) {
-  return { name, data };
+function createField(fieldName) {
+  return { fieldName };
 }
 
 const rows = [
-  createData('name', 'name' ),
-  createData('bio', 'bio'),
-  createData('phone', 'phone'),
-  createData('email', 'email'),
-  createData('password', 'pass'),
-];
+  createField('name'),
+  createField('email'),
+  createField('password'),
+]
 
 const EditTable = () => {
+  
+  const [ user, setUser ] = useState({})
+
   const classes = useStyles();
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    setUser((prevState) => ({ 
+      ...prevState,
+      [name]: e.target.value}
+    )
+  )}
+
+  console.log('USER',user)
 
   return (
     <React.Fragment>
@@ -30,7 +41,7 @@ const EditTable = () => {
         <img src={arrowIcon} alt="previous"/>
         <h3>Back</h3>
       </div>
-      <Table>
+      <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell className={classes.header}>Change Info</TableCell>
@@ -41,11 +52,18 @@ const EditTable = () => {
         <TableBody>
           <TableRow>
             <TableCell>CHANGE PHOTO</TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
           </TableRow>
-          {rows.map(row => (
-            <TableRow key={row.name}>
+          {rows && rows.map(row => (
+            <TableRow>
               <TableCell>
-                <Input label={row.name} placeholder={`Enter your ${row.name}`} />
+                <Input 
+                  name={row.fieldName}
+                  value={user.name}
+                  label={row.fieldName}
+                  onChange={handleChange}
+                />
               </TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
@@ -53,7 +71,7 @@ const EditTable = () => {
           ))}
         </TableBody>
       </Table>
-      <Button>Save</Button>
+      <Button className={classes.button}>Save</Button>
     </React.Fragment>
   )
 }
@@ -63,6 +81,14 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'center'
+  },
+  button: {
+    margin: '16px',
+    backgroundColor: '#023e8a',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#03045e'
+    }
   },
   header: {
     fontSize: '24px'
@@ -75,3 +101,41 @@ const useStyles = makeStyles({
 });
 
 export default EditTable
+
+
+{/* <TableRow>
+              <TableCell>
+                <Input
+                  name={name} 
+                  placeholder='Enter your name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+            <Input
+                  name={email} 
+                  placeholder='Enter your email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+            <Input
+                  name={password} 
+                  placeholder='Enter your password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow> */}

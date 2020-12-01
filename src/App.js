@@ -4,6 +4,7 @@ import RegisterCard from './components/RegisterCard'
 import LoginCard from './components/LoginCard'
 import ProfileTable from './components/ProfileTable'
 import NavigationBar from './components/NavigationBar'
+import EditTable from './components/EditTable'
 
 function App() {
   return (
@@ -16,9 +17,13 @@ function App() {
           <Route path="/login">
             <LoginCard />
           </Route>
-          <Route path="/dashboard">
+{          <Route exact path="/dashboard">
             <NavigationBar />
             <ProfileTable />
+          </Route>}
+          <Route path="/dashboard/edit">
+            <NavigationBar />
+            <EditTable />
           </Route>
         </Switch>
       </div>

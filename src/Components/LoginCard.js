@@ -34,6 +34,8 @@ const Login = () => {
     })
   }
 
+  // how to protect entering the dashoboard for loggedin users?
+
   if (loggedIn) {
     return <Redirect to="/dashboard" />;
   }

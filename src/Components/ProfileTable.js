@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+//import { Redirect } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from './Table'
 import TableRow from '@material-ui/core/TableRow';
@@ -12,22 +15,26 @@ function createData(field, data) {
   return { field, data };
 }
 
-const rows = [
-  createData('PHOTO', 'photo'),
-  createData('NAME', 'name' ),
-  createData('BIO', 'bio'),
-  createData('PHONE', 'phone'),
-  createData('EMAIL', 'email'),
-  createData('PASSWORD', 'pass'),
-];
+
 
 const ProfileTable = () => {
 
+  const user = useSelector(state => state.auth.user)
+  const history = useHistory()
+
+  console.log(user)
+
   const classes = useStyles();
 
-  const handleClick = (e) => {
-    console.log(e)
+  const handleClick = () => {
+    history.push('/dashboard/edit');
   }
+
+  const rows = [
+    createData('NAME', 'name' ),
+    createData('EMAIL', user.email),
+    createData('PASSWORD', 'pass'),
+  ];
 
   return (
     <Table>
@@ -36,9 +43,7 @@ const ProfileTable = () => {
           <TableCell className={classes.header}>Profile</TableCell>
           <TableCell align="center"></TableCell>
           <TableCell align="right">
-            <Button
-              onClick={handleClick}
-            >
+            <Button onClick={handleClick}>
               Edit
             </Button>
           </TableCell>
