@@ -18,8 +18,8 @@ const ProfileTable = () => {
 
   console.log('>>', currentUser)
  
-   if (!currentUser) {
-    return <Redirect to="/login" />
+    if (!currentUser) {
+    return <Redirect to="/" />
   }
   
 
@@ -27,7 +27,7 @@ const ProfileTable = () => {
     //history.push('/dashboard/edit');
   }
 
-  const field = ['email', 'password']
+  //const field = ['email', 'password']
 
   return (
     <Table>

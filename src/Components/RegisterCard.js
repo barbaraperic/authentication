@@ -1,5 +1,6 @@
 import React,  { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { register } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
@@ -11,13 +12,12 @@ import logo from '../images/devchallenges.svg'
 
 const RegisterCard = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const { message } = useSelector(state => state.message);
   const [ successful, setSuccessful ] = useState(false)
-
-  console.log('message', message)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -27,7 +27,7 @@ const RegisterCard = () => {
     const password = event.target[2].value
     dispatch(register(email, password))
       .then(() => {
-        setSuccessful(true)  
+        setSuccessful(true)
       })
       .catch (() => {
         setSuccessful(false)
@@ -42,7 +42,7 @@ const RegisterCard = () => {
         <img src={logo} alt="logo" />
         <div className={classes.header}>
           <h3>Join thousands of learners around the world</h3>
-          <p>Master web development by making real-life projects</p>
+          <p>REGISTRATION</p>
         </div>
         <form className={classes.formInputs} onSubmit={handleSubmit}>
           <FormControl>

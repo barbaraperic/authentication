@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import { logout } from '../actions/auth'
+import { logout } from '../actions/auth'
 
 import logo from '../images/devchallenges.svg'
 
@@ -16,7 +16,7 @@ const NavigationBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  //const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,9 +26,9 @@ const NavigationBar = () => {
     setAnchorEl(null);
   };
 
-  // const handleLogout = () => {
-  //   dispatch(logout())
-  // }
+  const handleLogout = () => {
+    dispatch(logout())
+  }
 
   return (
     <div className={classes.root}>
@@ -67,7 +67,7 @@ const NavigationBar = () => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}><span className={classes.logout}>Logout</span></MenuItem>
+                <MenuItem onClick={handleLogout}><span className={classes.logout}>Logout</span></MenuItem>
               </Menu>
             </div>
         </Toolbar>

@@ -30,11 +30,9 @@ const Login = (props) => {
     dispatch(login(email, password))
     .then(() => {
       console.log('then',isLoggedIn)
-      //history.push('/dashboard')
       setLoading(false)
     })
     .catch(() => {
-      console.log('catch',isLoggedIn)
       setLoading(false)
     })
   }
@@ -45,9 +43,9 @@ const Login = (props) => {
 
   //console.log('LL',loggedIn)
 
-  //  if (isLoggedIn) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+/*     if (isLoggedIn) {
+      return <Redirect to="/dashboard" />;
+   } */
 
   return (
     <MuiCard className={classes.card}>  
