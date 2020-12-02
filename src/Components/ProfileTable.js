@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-//import { Redirect } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from './Table'
 import TableRow from '@material-ui/core/TableRow';
@@ -11,30 +10,24 @@ import TableBody from '@material-ui/core/TableBody';
 
 import Button from './Button'
 
-function createData(field, data) {
-  return { field, data };
-}
-
-
-
 const ProfileTable = () => {
-
-  const user = useSelector(state => state.auth.user)
-  const history = useHistory()
-
-  console.log(user)
-
+  
   const classes = useStyles();
+  
+  const { user: currentUser } = useSelector(state => state.auth)
+
+  console.log('>>', currentUser)
+ 
+   if (!currentUser) {
+    return <Redirect to="/login" />
+  }
+  
 
   const handleClick = () => {
-    history.push('/dashboard/edit');
+    //history.push('/dashboard/edit');
   }
 
-  const rows = [
-    createData('NAME', 'name' ),
-    createData('EMAIL', user.email),
-    createData('PASSWORD', 'pass'),
-  ];
+  const field = ['email', 'password']
 
   return (
     <Table>
@@ -50,15 +43,20 @@ const ProfileTable = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
-          <TableRow key={row.name}>
-            <TableCell component="th" scope="row">
-              {row.field}
-            </TableCell>
-            <TableCell align="center">{row.data}</TableCell>
-            <TableCell align="right"></TableCell>
-          </TableRow>
-        ))}
+        <TableRow >
+          <TableCell component="th" scope="row">
+            Email
+          </TableCell>
+          <TableCell align="left">{currentUser.email}</TableCell>
+          <TableCell></TableCell>
+        </TableRow>
+        <TableRow >
+          <TableCell component="th" scope="row">
+            ID
+          </TableCell>
+          <TableCell align="left" >{currentUser.id}</TableCell>
+          <TableCell></TableCell>
+        </TableRow>
       </TableBody>
     </Table>
   );
@@ -72,7 +70,7 @@ const useStyles = makeStyles({
     fontSize: '13px',
     color: '#BDBDBD',
     fontWeight: '500'
-  }
+  },
 });
 
 export default ProfileTable

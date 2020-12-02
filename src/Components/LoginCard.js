@@ -11,41 +11,51 @@ import SocialLinks from './SocialLinks'
 import logo from '../images/devchallenges.svg'
 
 
-const Login = () => {
+const Login = (props) => {
+  const { history } = props
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
-  const [ loggedIn, setLoggedIn ] = useState(false)
+  const [ loading, setLoading ] = useState(false)
   const dispatch = useDispatch()
 
-  //const isLoggedIn = useSelector((state) => state.auth)
+  const isLoggedIn = useSelector((state) => state.auth)
 
   const classes = useStyles()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     
     dispatch(login(email, password))
     .then(() => {
-      setLoggedIn(true)
+      console.log('then',isLoggedIn)
+      //history.push('/dashboard')
+      setLoading(false)
     })
     .catch(() => {
-      setLoggedIn(false)
+      console.log('catch',isLoggedIn)
+      setLoading(false)
     })
   }
+
+  console.log('LL',isLoggedIn)
 
   // how to protect entering the dashoboard for loggedin users?
 
-  if (loggedIn) {
-    return <Redirect to="/dashboard" />;
-  }
+  //console.log('LL',loggedIn)
+
+  //  if (isLoggedIn) {
+  //   return <Redirect to="/dashboard" />;
+  // }
 
   return (
     <MuiCard className={classes.card}>  
       <img src={logo} alt="logo" />
       <form className={classes.formInputs} onSubmit={handleSubmit}>
         <FormControl>
-          <Input 
+          <Input
+            id="email"
             type="email"
             name="email" 
             label="email" 
@@ -53,6 +63,7 @@ const Login = () => {
             onChange={e => setEmail(e.target.value)}
           />
           <Input
+            id="password"
             type="password"
             name="password" 
             label="password" 
