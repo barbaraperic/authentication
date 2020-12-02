@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const Input = (props) => {
   const {
+    id,
     className,
     value,
     name,
@@ -24,6 +25,7 @@ const Input = (props) => {
 
   return (
     <TextField
+      id={id}
       className={`${classes.input} ${className}`}
       value={value}
       name={name}
@@ -54,6 +56,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 Input.defaultProps = {
+  id: '',
   className: '',
   value: '',
   variant: 'outlined',
@@ -68,6 +71,7 @@ Input.defaultProps = {
 }
 
 Input.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   value: PropTypes.string,
   name: PropTypes.string.isRequired,

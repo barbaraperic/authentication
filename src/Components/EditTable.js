@@ -9,31 +9,13 @@ import Input from './Input'
 import Button from './Button'
 import arrowIcon from '../images/arrow_back.svg'
 
-function createField(fieldName) {
-  return { fieldName };
-}
-
-const rows = [
-  createField('name'),
-  createField('email'),
-  createField('password'),
-]
-
 const EditTable = () => {
   
-  const [ user, setUser ] = useState({})
-
+  const [ name, setName] = useState('')
+  const [ email, setEmail] = useState('')
+  const [ password, setPassword] = useState('')
+  
   const classes = useStyles();
-
-  const handleChange = (e) => {
-    const name = e.target.name
-    setUser((prevState) => ({ 
-      ...prevState,
-      [name]: e.target.value}
-    )
-  )}
-
-  console.log('USER',user)
 
   return (
     <React.Fragment>
@@ -55,20 +37,42 @@ const EditTable = () => {
             <TableCell></TableCell>
             <TableCell></TableCell>
           </TableRow>
-          {rows && rows.map(row => (
-            <TableRow>
-              <TableCell>
-                <Input 
-                  name={row.fieldName}
-                  value={user.name}
-                  label={row.fieldName}
-                  onChange={handleChange}
-                />
-              </TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          ))}
+          <TableRow>
+            <TableCell>
+              <Input
+                name="name"
+                value={name}
+                label="name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Input
+                name="email"
+                value={email}
+                label="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Input
+                name="password"
+                value={password}
+                label="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow>
         </TableBody>
       </Table>
       <Button className={classes.button}>Save</Button>
