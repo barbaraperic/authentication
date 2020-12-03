@@ -18,13 +18,13 @@ const ProfileTable = () => {
 
   console.log('>>', currentUser)
  
-    if (!currentUser) {
-    return <Redirect to="/" />
-  }
+  //   if (!currentUser) {
+  //   return <Redirect to="/" />
+  // }
   
 
   const handleClick = () => {
-    //history.push('/dashboard/edit');
+    //history.push('/profile/edit');
   }
 
   //const field = ['email', 'password']

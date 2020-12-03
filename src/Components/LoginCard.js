@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect } from "react-router-dom";
+import history from "../history";
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +13,7 @@ import logo from '../images/devchallenges.svg'
 
 
 const Login = (props) => {
-  const { history } = props
+  // const { history } = props
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
@@ -29,6 +30,8 @@ const Login = (props) => {
     
     dispatch(login(email, password))
     .then(() => {
+      history.push("/profile");
+      window.location.reload()
       console.log('then',isLoggedIn)
       setLoading(false)
     })
@@ -37,15 +40,16 @@ const Login = (props) => {
     })
   }
 
-  console.log('LL',isLoggedIn)
+  console.log('history', history)
+  console.log('state', isLoggedIn)
 
   // how to protect entering the dashoboard for loggedin users?
 
   //console.log('LL',loggedIn)
 
-/*     if (isLoggedIn) {
-      return <Redirect to="/dashboard" />;
-   } */
+  //   if (isLoggedIn) {
+  //     return <Redirect to="/profile" />;
+  //  }
 
   return (
     <MuiCard className={classes.card}>  
@@ -72,7 +76,12 @@ const Login = (props) => {
             <p>or continue with these social profile</p>
           <SocialLinks />
           <p>Don't have an account yet?
-            <span className={classes.link}> Register</span>
+            <a 
+              href="/"
+              className={classes.link}
+            > 
+              Register
+            </a>
           </p>
         </FormControl>
       </form>

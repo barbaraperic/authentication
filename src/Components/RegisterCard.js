@@ -1,6 +1,7 @@
 import React,  { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { register } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
@@ -12,7 +13,6 @@ import logo from '../images/devchallenges.svg'
 
 const RegisterCard = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
@@ -32,6 +32,10 @@ const RegisterCard = () => {
       .catch (() => {
         setSuccessful(false)
       })
+  }
+
+  const handleLogin = (e) => {
+    return <Redirect to="/login" />
   }
 
   const classes = useStyles()
@@ -64,7 +68,13 @@ const RegisterCard = () => {
               <p>or continue with these social profile</p>
             <SocialLinks />
             <p>Already a member?
-              <span className={classes.link}> Login</span>
+              <a 
+                href="/login"
+                className={classes.link}
+                onClick={handleLogin}
+              > 
+                Login
+              </a>
             </p>
           </FormControl>
         </form>

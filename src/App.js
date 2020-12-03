@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import history from './history'
 import RegisterCard from './components/RegisterCard'
 import LoginCard from './components/LoginCard'
 import ProfileTable from './components/ProfileTable'
@@ -8,7 +9,7 @@ import EditTable from './components/EditTable'
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <div style={styles.container}>
         <Switch>
           <Route exact path="/">
@@ -17,11 +18,11 @@ function App() {
           <Route path="/login">
             <LoginCard />
           </Route>
-{          <Route exact path="/dashboard">
+{          <Route exact path="/profile">
             <NavigationBar />
             <ProfileTable />
           </Route>}
-          <Route path="/dashboard/edit">
+          <Route path="/profile/edit">
             <NavigationBar />
             <EditTable />
           </Route>

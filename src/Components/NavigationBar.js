@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from  'react-redux'
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -65,9 +66,17 @@ const NavigationBar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to="/profile">
+                    Profile
+                  </Link>
+                </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogout}><span className={classes.logout}>Logout</span></MenuItem>
+                <MenuItem>
+                  <a href="/login" className={classes.logout} onClick={handleLogout}>
+                    Logout
+                  </a>
+                </MenuItem>
               </Menu>
             </div>
         </Toolbar>
