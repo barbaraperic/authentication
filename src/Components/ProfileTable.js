@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
+import history from "../history";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from './Table'
 import TableRow from '@material-ui/core/TableRow';
@@ -16,7 +17,7 @@ const ProfileTable = () => {
   
   const { user: currentUser } = useSelector(state => state.auth)
 
-  console.log('>>', currentUser)
+  console.log('currentUser', currentUser)
  
   //   if (!currentUser) {
   //   return <Redirect to="/" />
@@ -24,7 +25,8 @@ const ProfileTable = () => {
   
 
   const handleClick = () => {
-    //history.push('/profile/edit');
+    history.push('/profile/edit');
+    window.location.reload()
   }
 
   //const field = ['email', 'password']

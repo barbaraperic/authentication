@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import history from "../history";
+
 import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,11 +19,16 @@ const EditTable = () => {
   
   const classes = useStyles();
 
+  const handleClick = () => {
+    history.push('/profile')
+    window.location.reload()
+  }
+
   return (
     <React.Fragment>
       <div className={classes.arrow}>
         <img src={arrowIcon} alt="previous"/>
-        <h3>Back</h3>
+        <a href="/profile" onClick={handleClick}>Back</a>
       </div>
       <Table className={classes.table}>
         <TableHead>

@@ -18,10 +18,10 @@ function App() {
           <Route path="/login">
             <LoginCard />
           </Route>
-{          <Route exact path="/profile">
+          <Route exact path="/profile">
             <NavigationBar />
             <ProfileTable />
-          </Route>}
+          </Route>
           <Route path="/profile/edit">
             <NavigationBar />
             <EditTable />

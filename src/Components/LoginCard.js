@@ -47,9 +47,9 @@ const Login = (props) => {
 
   //console.log('LL',loggedIn)
 
-  //   if (isLoggedIn) {
-  //     return <Redirect to="/profile" />;
-  //  }
+    if (isLoggedIn) {
+      return <Redirect to="/profile" />;
+   }
 
   return (
     <MuiCard className={classes.card}>  
