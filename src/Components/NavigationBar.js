@@ -39,9 +39,11 @@ const NavigationBar = () => {
         style={{boxShadow: 'none'}}  
       >
         <Toolbar className={classes.toolbar}>
-          <IconButton edge="start" className={classes.menuButton} aria-label="menu">
-            <img src={logo} alt="logo"/>
-          </IconButton>
+          <Link to="/profile">
+            <IconButton edge="start" className={classes.menuButton} aria-label="menu">
+              <img src={logo} alt="logo"/>
+            </IconButton>
+          </Link>
             <div>
               <IconButton
                 aria-label="account of current user"

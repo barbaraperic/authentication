@@ -1,6 +1,6 @@
 import React,  { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Redirect } from "react-router-dom";
 import { register } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,9 +34,9 @@ const RegisterCard = () => {
       })
   }
 
-  const handleLogin = (e) => {
-    return <Redirect to="/login" />
-  }
+  // const handleLogin = (e) => {
+  //   return <Redirect to="/login" />
+  // }
 
   const classes = useStyles()
 
@@ -68,13 +68,13 @@ const RegisterCard = () => {
               <p>or continue with these social profile</p>
             <SocialLinks />
             <p>Already a member?
-              <a 
-                href="/login"
+              <Link
+                to="/login"
                 className={classes.link}
-                onClick={handleLogin}
+                // onClick={handleLogin}
               > 
                 Login
-              </a>
+              </Link>
             </p>
           </FormControl>
         </form>

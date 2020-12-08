@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import history from "../history";
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/auth'
@@ -47,9 +47,9 @@ const Login = (props) => {
 
   //console.log('LL',loggedIn)
 
-    if (isLoggedIn) {
-      return <Redirect to="/profile" />;
-   }
+  //   if (isLoggedIn) {
+  //     return <Redirect to="/profile" />;
+  //  }
 
   return (
     <MuiCard className={classes.card}>  
@@ -75,13 +75,13 @@ const Login = (props) => {
           <Button type="submit">Submit</Button>
             <p>or continue with these social profile</p>
           <SocialLinks />
-          <p>Don't have an account yet?
-            <a 
-              href="/"
+          <p>Don't have an account yet? 
+            <Link
+              to="/"
               className={classes.link}
             > 
               Register
-            </a>
+            </Link>
           </p>
         </FormControl>
       </form>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import history from "../history";
-
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
@@ -19,16 +19,13 @@ const EditTable = () => {
   
   const classes = useStyles();
 
-  const handleClick = () => {
-    history.push('/profile')
-    window.location.reload()
-  }
-
   return (
     <React.Fragment>
       <div className={classes.arrow}>
+      <Link to="/profile" className={classes.backIcon}>
         <img src={arrowIcon} alt="previous"/>
-        <a href="/profile" onClick={handleClick}>Back</a>
+        Back
+      </Link>
       </div>
       <Table className={classes.table}>
         <TableHead>
@@ -108,45 +105,13 @@ const useStyles = makeStyles({
     fontSize: '13px',
     color: '#BDBDBD',
     fontWeight: '500'
+  },
+  backIcon: {
+    display: 'flex',
+    textDecoration: 'none',
+    margin: '0 60px',
+    color: 'black'
   }
 });
 
 export default EditTable
-
-
-{/* <TableRow>
-              <TableCell>
-                <Input
-                  name={name} 
-                  placeholder='Enter your name'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-            <Input
-                  name={email} 
-                  placeholder='Enter your email'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-            </TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-            <Input
-                  name={password} 
-                  placeholder='Enter your password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-            </TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-          </TableRow> */}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-// import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import history from "../history";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from './Table'
@@ -24,10 +24,10 @@ const ProfileTable = () => {
   // }
   
 
-  const handleClick = () => {
-    history.push('/profile/edit');
-    window.location.reload()
-  }
+  // const handleClick = () => {
+  //   history.push('/profile/edit');
+  //   window.location.reload()
+  // }
 
   //const field = ['email', 'password']
 
@@ -38,9 +38,13 @@ const ProfileTable = () => {
           <TableCell className={classes.header}>Profile</TableCell>
           <TableCell align="center"></TableCell>
           <TableCell align="right">
-            <Button onClick={handleClick}>
-              Edit
-            </Button>
+            <Link
+              to="/profile/edit"
+              style={{textDecoration:'none'}}
+            >
+              <Button className={classes.button}>Edit</Button>
+            </Link>
+
           </TableCell>
         </TableRow>
       </TableHead>
