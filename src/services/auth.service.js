@@ -28,5 +28,13 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
+const updateUser = (email, password) => {
+  return axios
+    .put(API_URL + 'profile/edit', {
+      email, 
+      password
+    })
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { register, login, logout };
+export default { register, login, logout, updateUser };

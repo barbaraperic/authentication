@@ -4,7 +4,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  SET_MESSAGE
+  SET_MESSAGE,
+  UPDATE_SUCCESS,
 } from './types'
 
 import AuthService from '../services/auth.service'
@@ -84,3 +85,15 @@ export const logout = () => (dispatch) => {
     type: LOGOUT,
   });
 };
+
+
+export const updateUser = (email, password) => (dispatch) => {
+  AuthService.updateUser(email, password)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SUCCESS
+      })
+
+      return res
+    }) 
+}

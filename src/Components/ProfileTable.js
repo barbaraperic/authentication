@@ -11,13 +11,11 @@ import TableBody from '@material-ui/core/TableBody';
 import Button from './Button'
 
 const ProfileTable = () => {
-  
+
   const classes = useStyles();
   
   const { user: currentUser } = useSelector(state => state.auth)
   const isLoggedIn = useSelector(state => state.auth)
-
-  console.log('isLogged',isLoggedIn)
 
   if (!isLoggedIn) {
     return <Redirect to="/login" />
