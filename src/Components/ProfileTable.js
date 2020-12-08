@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from "react-router-dom";
-import history from "../history";
+import React from 'react';
+import { useSelector } from 'react-redux'
+import { Link, Redirect } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from './Table'
 import TableRow from '@material-ui/core/TableRow';
@@ -16,20 +15,13 @@ const ProfileTable = () => {
   const classes = useStyles();
   
   const { user: currentUser } = useSelector(state => state.auth)
+  const isLoggedIn = useSelector(state => state.auth)
 
-  console.log('currentUser', currentUser)
- 
-  //   if (!currentUser) {
-  //   return <Redirect to="/" />
-  // }
-  
+  console.log('isLogged',isLoggedIn)
 
-  // const handleClick = () => {
-  //   history.push('/profile/edit');
-  //   window.location.reload()
-  // }
-
-  //const field = ['email', 'password']
+  if (!isLoggedIn) {
+    return <Redirect to="/login" />
+  }
 
   return (
     <Table>

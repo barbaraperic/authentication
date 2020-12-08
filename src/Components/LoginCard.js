@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Link, Redirect } from "react-router-dom";
 import history from "../history";
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../actions/auth'
+import { login, logout } from '../actions/auth'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
 import FormControl from '@material-ui/core/FormControl'
@@ -11,18 +11,20 @@ import Button from './Button'
 import SocialLinks from './SocialLinks'
 import logo from '../images/devchallenges.svg'
 
-
-const Login = (props) => {
-  // const { history } = props
+const Login = () => {
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ loading, setLoading ] = useState(false)
   const dispatch = useDispatch()
 
-  const isLoggedIn = useSelector((state) => state.auth)
+  const announcement = useSelector((state) => state.message)
 
   const classes = useStyles()
+
+  useEffect(() => {
+    dispatch(logout())
+  }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -32,60 +34,59 @@ const Login = (props) => {
     .then(() => {
       history.push("/profile");
       window.location.reload()
-      console.log('then',isLoggedIn)
       setLoading(false)
     })
-    .catch(() => {
+    .catch((e) => {
       setLoading(false)
     })
   }
 
-  console.log('history', history)
-  console.log('state', isLoggedIn)
-
-  // how to protect entering the dashoboard for loggedin users?
-
-  //console.log('LL',loggedIn)
-
-  //   if (isLoggedIn) {
-  //     return <Redirect to="/profile" />;
-  //  }
+  if(loading) {
+    return <p>Loading</p>
+  }
 
   return (
-    <MuiCard className={classes.card}>  
-      <img src={logo} alt="logo" />
-      <form className={classes.formInputs} onSubmit={handleSubmit}>
-        <FormControl>
-          <Input
-            id="email"
-            type="email"
-            name="email" 
-            label="email" 
-            value={email} 
-            onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            id="password"
-            type="password"
-            name="password" 
-            label="password" 
-            value={password} 
-            onChange={e => setPassword(e.target.value)}
-          />
-          <Button type="submit">Submit</Button>
-            <p>or continue with these social profile</p>
-          <SocialLinks />
-          <p>Don't have an account yet? 
-            <Link
-              to="/"
-              className={classes.link}
-            > 
-              Register
-            </Link>
-          </p>
-        </FormControl>
-      </form>
-    </MuiCard>
+    <React.Fragment>
+      <MuiCard className={classes.card}>  
+        <img src={logo} alt="logo" />
+        <form className={classes.formInputs} onSubmit={handleSubmit}>
+          <FormControl>
+            <Input
+              id="email"
+              type="email"
+              name="email" 
+              label="email" 
+              value={email} 
+              onChange={e => setEmail(e.target.value)}
+            />
+            <Input
+              id="password"
+              type="password"
+              name="password" 
+              label="password" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Button type="submit">Submit</Button>
+              <p>or continue with these social profile</p>
+            <SocialLinks />
+            <p>Don't have an account yet? 
+              <Link
+                to="/"
+                className={classes.link}
+              > 
+                Register
+              </Link>
+            </p>
+          </FormControl>
+        </form>
+      </MuiCard>
+      {announcement && 
+        <div className={announcement ? classes.alert : classes.success}>
+          {announcement.message}
+        </div>
+      }
+    </React.Fragment>
   )
 }
 
@@ -107,6 +108,11 @@ const useStyles = makeStyles(() => ({
   link: {
     color: '#2F80ED',
     cursor: 'pointer'
+  },
+  alert: {
+    color: 'red',
+    fontWeight: 500,
+    textTransform: 'uppercase',
   },
 }));
 

@@ -1,6 +1,4 @@
 import React from 'react'
-import { useDispatch, useSelector } from  'react-redux'
-//import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,15 +7,12 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { logout } from '../actions/auth'
-
 import logo from '../images/devchallenges.svg'
 
 const NavigationBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const dispatch = useDispatch()
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,10 +21,6 @@ const NavigationBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleLogout = () => {
-    dispatch(logout())
-  }
 
   return (
     <div className={classes.root}>
@@ -68,16 +59,10 @@ const NavigationBar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>
-                  <Link to="/profile">
-                    Profile
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem>
-                  <a href="/login" className={classes.logout} onClick={handleLogout}>
+                  <Link to="/login" className={classes.logout} >
                     Logout
-                  </a>
+                  </Link>
                 </MenuItem>
               </Menu>
             </div>
@@ -101,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logout: {
     color: 'red',
+    textDecoration: 'none'
   }
 }));
 
