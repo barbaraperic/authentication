@@ -59,14 +59,9 @@ exports.signin = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-  User.findOneAndUpdate(
-    {email: req.body.email},
-    {$set: {password: req.body.password}},
-    {new: true},
-    (err, user) => {
-      if (err) {
-        console.log("Something wrong when updating data!")
-      }
-    console.log(user)
-    })
+  User.findByIdAndUpdate(
+    req.id,
+    {password: req.body.password},
+    {new: true}
+  ).exec()
 }
