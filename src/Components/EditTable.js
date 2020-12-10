@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
@@ -16,17 +16,21 @@ const EditTable = () => {
   
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
-  const [ message, setMessage ] = useState('')
+  //const [ message, setMessage ] = useState('')
   
   const dispatch = useDispatch()
+  const message = useSelector(state => state.message)
   const classes = useStyles();
+
+  console.log('M',message)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(e)
-    const email = e.target[2].value
-    const password = e.target[4].value
-    dispatch(updateUser(email, password)).then((res) => console.log(res))
+    console.log(e.target)
+    const email = e.target[0].value
+    const password = e.target[2].value
+    dispatch(updateUser(email, password))
   }
 
   return (
@@ -80,6 +84,11 @@ const EditTable = () => {
         </Table>
         <Button className={classes.button} type="submit">Save</Button>
       </form>
+      {message && (
+        <div>
+          {message.message}
+        </div>
+      )}
     </React.Fragment>
   )
 }

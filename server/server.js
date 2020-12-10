@@ -20,10 +20,9 @@ require('./routes/test.routes')(app)
 require('./routes/auth.routes')(app)
 require('./routes/user.routes')(app)
 
-
 connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
-  .then(() => app.listen(4000, () => {
-    console.log('server on http://localhost:4000')
+  .then(() => app.listen(5000, () => {
+    console.log('server on http://localhost:5000')
   }))
   .catch(e => console.error(e))
 

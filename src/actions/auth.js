@@ -86,14 +86,21 @@ export const logout = () => (dispatch) => {
   });
 };
 
-
 export const updateUser = (email, password) => (dispatch) => {
   AuthService.updateUser(email, password)
     .then((res) => {
+
+      console.log('RESULT', res)
+      
       dispatch({
-        type: UPDATE_SUCCESS
+        type: UPDATE_SUCCESS,
+        payload: {user: res.data.user}
       })
 
-      return res
+      dispatch({
+        type: SET_MESSAGE,
+        payload: res.data.message
+      })
+
     }) 
 }
