@@ -30,7 +30,7 @@ const logout = () => {
 
 const updateUser = (email, password) => {
   return axios
-    .put(API_URL + 'user/:id', {
+    .put(API_URL + 'user/:userId', {
       email, 
       password
     })

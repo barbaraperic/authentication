@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import history from "../history";
 import { useDispatch, useSelector } from 'react-redux'
 import { login, logout } from '../actions/auth'
+import { clearMessage } from '../actions/message'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
 import FormControl from '@material-ui/core/FormControl'
@@ -24,6 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(logout())
+    dispatch(clearMessage())
   }, [dispatch])
 
   const handleSubmit = (e) => {
@@ -32,7 +34,7 @@ const Login = () => {
     
     dispatch(login(email, password))
     .then(() => {
-      history.push("/profile");
+      history.push("/user");
       window.location.reload()
       setLoading(false)
     })

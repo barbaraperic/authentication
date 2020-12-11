@@ -1,8 +1,8 @@
-import React,  { useState } from 'react'
+import React,  { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Redirect } from "react-router-dom";
 import { register } from '../actions/auth'
+import { clearMessage } from '../actions/message'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
 import FormControl from '@material-ui/core/FormControl' 
@@ -18,6 +18,10 @@ const RegisterCard = () => {
   const [ password, setPassword ] = useState('')
   const { message } = useSelector(state => state.message);
   const [ successful, setSuccessful ] = useState(false)
+
+  useEffect(() => {
+    dispatch(clearMessage())
+  },[])
 
   const handleSubmit = (event) => {
     event.preventDefault()
