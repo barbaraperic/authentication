@@ -14,5 +14,5 @@ module.exports = function(app) {
 
   app.get("/test/user", [authJwt.verifyToken], controller.userBoard)
 
-  app.get("/user", controller.getUser)
+  app.put("/user/:userId", controller.updateUser)
 }

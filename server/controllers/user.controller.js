@@ -1,11 +1,18 @@
 const User = require('../models/user.model')
 
-exports.getUser = (req, res) => {
+exports.updateUser = (req, res) => {
   User.findOne({
     email: req.body.email
   })
   .exec((err, user) => {
-    res.json(user)
+    if (err) {
+      res.status(500).send(err)
+    } else {
+      user.password = req.body.password || user.password
+      user.save((err, user) => {
+        res.send({ success: true, user: user})
+      })
+    }
   })
 }
 

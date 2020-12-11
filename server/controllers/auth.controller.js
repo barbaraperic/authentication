@@ -58,22 +58,6 @@ exports.signin = (req, res) => {
     });
 };
 
-exports.updateUser = (req, res) => {
-  User.findOneAndUpdate(
-    {email: req.body.email},
-    {password: req.body.password},
-    {new: true, upsert: true}
-  ).exec((err, user) => {
-          if (err) {
-      res.send(err)
-    } else {
-      res.status(200).send({
-        user,
-        message: "Password changed successfully"
-      });
-    }
-    }) 
-}
 
 
 
