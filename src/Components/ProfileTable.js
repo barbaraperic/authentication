@@ -29,7 +29,7 @@ const ProfileTable = () => {
           <TableCell align="center"></TableCell>
           <TableCell align="right">
             <Link
-              to="/profile/edit"
+              to={`/user/${currentUser.id}`}
               style={{textDecoration:'none'}}
             >
               <Button className={classes.button}>Edit</Button>

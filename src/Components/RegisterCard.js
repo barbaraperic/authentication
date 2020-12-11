@@ -71,7 +71,6 @@ const RegisterCard = () => {
               <Link
                 to="/login"
                 className={classes.link}
-                // onClick={handleLogin}
               > 
                 Login
               </Link>

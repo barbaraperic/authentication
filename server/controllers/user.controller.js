@@ -1,10 +1,13 @@
-/* const me = (req, res) => {
-  res.status(200).json({ data: req.user })
+const User = require('../models/user.model')
+
+exports.getUser = (req, res) => {
+  User.findOne({
+    email: req.body.email
+  })
+  .exec((err, user) => {
+    res.json(user)
+  })
 }
- */
-/* const createUser = (userDetails) => {
-  return User.create(userDetails)
-} */
 
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");

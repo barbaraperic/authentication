@@ -18,11 +18,11 @@ function App() {
           <Route path="/login">
             <LoginCard />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/user">
             <NavigationBar />
             <ProfileTable />
           </Route>
-          <Route path="/profile/edit">
+          <Route path="/user/:id">
             <NavigationBar />
             <EditTable />
           </Route>

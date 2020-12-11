@@ -20,8 +20,6 @@ module.exports = function(app) {
 
   app.post("/signin", controller.signin);
 
-  app.get("/hello", controller.updateUser)
-
-  app.put("/profile/edit", controller.updateUser)
+  app.put("/user/:id", controller.updateUser)
 
 };

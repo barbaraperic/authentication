@@ -13,4 +13,6 @@ module.exports = function(app) {
   app.get("/test/all", controller.allAccess);
 
   app.get("/test/user", [authJwt.verifyToken], controller.userBoard)
+
+  app.get("/user", controller.getUser)
 }

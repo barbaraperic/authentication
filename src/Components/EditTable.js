@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
@@ -16,6 +16,9 @@ const EditTable = () => {
   
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
+  const params = useParams('')
+
+  console.log(params)
   //const [ message, setMessage ] = useState('')
   
   const dispatch = useDispatch()
@@ -26,8 +29,6 @@ const EditTable = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(e)
-    console.log(e.target)
     const email = e.target[0].value
     const password = e.target[2].value
     dispatch(updateUser(email, password))
@@ -36,7 +37,7 @@ const EditTable = () => {
   return (
     <React.Fragment>
       <div className={classes.arrow}>
-      <Link to="/profile" className={classes.backIcon}>
+      <Link to="/user" className={classes.backIcon}>
         <img src={arrowIcon} alt="previous"/>
         Back
       </Link>
